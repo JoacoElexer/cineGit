@@ -3,18 +3,18 @@
 class Asiento {
     - Reservado: boolean
 
-'constructor'
-    + Asiento (reservado : boolean)
-'metodos'
+    'constructor'
+    + Asiento ()
+    'metodos'
     + getReservado(): boolean
     + reservar(fila: int, columna: int): void
-    + cancelar( fila : int, columna: int): void
-
+    + cancelarReserva(fila: int, columna: int): void
+    +deshacerCancelacion(): void
     
 }
 
 class Sala {
-    - ArrayList <Arraylist <Asiento>> asientos : Integer
+    - ArrayList <Arraylist <Asiento>> asientos : Asiento
 
     'constructor'
     + Sala(filas: int, columnas: int) 
@@ -28,7 +28,7 @@ class Sala {
 class Cine {
     - ArrayList <ArrayList <Sala>> funciones : Sala
 
-''constructor''
+    'constructor'
     + Cine(numFunciones : int, numSalasPorFuncion : int, filas : int, columnas : int)
 
     'metodos'
@@ -41,22 +41,22 @@ class Reserva {
     main(args: String[]): void
 }
 
-class Cancelaciones{
+class Cancelaciones {
+    - Stack<String> cancelacionesPila
 
--Stack <Cine> cancelaciones : Cine
-
-'metodos'
-+isEmpty ( fila : int, columna : int): boolean
-+cancelarReserva(fila : int, columna : int): void
-
+    'constructor'
+    + Cancelaciones()
+    'metodos'
+    + agregarCancelacion(cancelacion: String): void
+    + deshacerCancelacion(): void
+    + mostrarCancelaciones(): void
+    + manejarReservaCancelada(funcion: String, sala: int, fila: int, columna: int): void
+    
 }
-
 
 Cancelaciones --o Cine
  Sala *-- Asiento
  Reserva ..> Cine: crea
- Cine *-- Sala
- 
-    
-@enduml
+ Cine *-- Sala
 
+@enduml

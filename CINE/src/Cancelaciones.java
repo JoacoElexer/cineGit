@@ -1,35 +1,43 @@
 import java.util.Stack;
 
 public class Cancelaciones {
-    Stack<Integer> Cancelaciones = new Stack<>();
+    private Stack<String> cancelaciones;
 
     public Cancelaciones() {
+        this.cancelaciones = new Stack<>();
     }
 
-    public void agregarCancelacion(int funcion, int sala, int fila, int columna) {
-        Cancelaciones.push(funcion);
-        Cancelaciones.push(sala);
-        Cancelaciones.push(fila);
-        Cancelaciones.push(columna);
+    // Getters y Setters
+    public Stack<String> getCancelaciones() {
+        return cancelaciones;
+    }
 
+    public void setCancelaciones(Stack<String> cancelaciones) {
+        this.cancelaciones = cancelaciones;
+    }
 
+    public void agregarCancelacion(String detalleCancelacion) {
+        cancelaciones.push(detalleCancelacion);
     }
 
     public void deshacerCancelacion() {
-        if (Cancelaciones.empty()) {
-            System.out.println("No hay cancelaciones que deshacer.");
-            return;
-        } else {
-            System.out.println("Cancelación deshecha: " + Cancelaciones.peek());
-        }
-        Cancelaciones.pop();
+        if (!cancelaciones.isEmpty()) {
+            cancelaciones.pop();
+        } 
     }
 
     public void mostrarCancelaciones() {
-        System.out.println("Cancelaciones: " + Cancelaciones);
+        System.out.println("Reservas canceladas:");
+        for (String cancelacion : cancelaciones) {
+            System.out.println(cancelacion);
+        }
     }
 
-    public void manejarReservaCancelada(int funcion, int sala, int fila, int columna) {
-        
+    public void registrarReservaCancelada(String detalleCancelacion) {
+        agregarCancelacion(detalleCancelacion);
     }
+
+    // public void deshacerReservaCancelada() {
+    //     deshacerCancelacion();
+    // }
 }

@@ -9,24 +9,31 @@ public class Asiento {
         return Reservado;
     }
 
-    public void setReservado(boolean reservado) {
-        Reservado = reservado;
-    }
-
-    public void reservar() {
+    public void reservar(int fila, int columna) {
         if (getReservado() == false) {
             this.Reservado = true;
         } else {
-            System.out.println("El asiento ya está reservado.");
+            System.out.println("El asiento en la fila: " + fila + " y columna: " + columna + ", ya está reservado");
         }
-        
+
     }
 
-    public void cancelarReserva() {
-        if (getReservado() == false){
-            System.out.println("El asiento no está reservado.");
+    public void cancelarReserva(int fila, int columna) {
+        if (getReservado() == false) {
+            System.out.println("El asiento en la fila: " + fila + " y columna: " + columna + ", no está reservado");
         } else {
             this.Reservado = false;
+        }
+    }
+
+    public void deshacerCancelacion() {
+        // Comprobar si el asiento fue reservado previamente
+        if (getReservado() == true) {
+            System.out.println("El asiento ya ha sido reservado. No se puede deshacer la cancelación.");
+            
+        } else {
+            System.out.println("Cancelación deshecha con éxito.");
+            this.Reservado = true;
         }
     }
 }
